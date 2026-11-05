@@ -1,0 +1,4 @@
+#!/bin/bash
+# Blocks a commit if the staged changes look like they contain a secret.
+# Turn it on once per clone: git config core.hooksPath .githooks
+exec "$(git rev-parse --show-toplevel)/skill/scripts/secret-scan.sh" --staged

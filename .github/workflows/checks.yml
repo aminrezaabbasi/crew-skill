@@ -1,0 +1,39 @@
+name: checks
+
+on:
+  push:
+  pull_request:
+
+# This workflow needs no secrets and only reads the repo.
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Set a git identity for the test repos
+        run: |
+          git config --global user.name ci
+          git config --global user.email ci@example.test
+      - name: Guard hook
+        run: bash tests/guard-test.sh
+      - name: Secret scanner
+        run: bash tests/secret-scan-test.sh
+      - name: Installer
+        run: bash tests/install-test.sh
+      - name: Scan this repo and its whole history for secrets
+        run: |
+          skill/scripts/secret-scan.sh --all
+          skill/scripts/secret-scan.sh --history
+      - name: Shell lint
+        if: runner.os == 'Linux'
+        run: shellcheck --severity=warning install.sh skill/hooks/crew-guard.sh skill/scripts/secret-scan.sh tests/*.sh .githooks/pre-commit

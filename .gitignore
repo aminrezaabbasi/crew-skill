@@ -1,0 +1,31 @@
+# Logins, keys, and environment files. None of these belong in this repo.
+.env
+.env.*
+!.env.example
+auth.json
+.credentials.json
+credentials.json
+hosts.yml
+.netrc
+.npmrc
+*.pem
+*.key
+*.p12
+*.pfx
+*.p8
+id_rsa*
+id_ed25519*
+
+# Personal crew data, in case someone runs the skill from a checkout by mistake.
+# Repo profiles, board caches, run records, and backups stay on your machine.
+skill/repos/
+skill/boards/
+runs/
+readiness.md
+config.md
+*.bak-*
+
+# Local clutter
+.DS_Store
+.claude/
+*.log
