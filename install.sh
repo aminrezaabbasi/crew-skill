@@ -114,6 +114,7 @@ if ! check_guard "$repo/skill/hooks/crew-guard.sh"; then
   exit 1
 fi
 place "$repo/skill/scripts/secret-scan.sh" "$dest/scripts/secret-scan.sh" 755
+place "$repo/skill/scripts/readiness.sh" "$dest/scripts/readiness.sh" 755
 place "$repo/skill/hooks/crew-guard.sh" "$dest/hooks/crew-guard.sh" 755
 place "$repo/skill/SKILL.md" "$dest/SKILL.md" 644
 

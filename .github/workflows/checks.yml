@@ -30,10 +30,12 @@ jobs:
         run: bash tests/secret-scan-test.sh
       - name: Installer
         run: bash tests/install-test.sh
+      - name: Readiness script
+        run: bash tests/readiness-test.sh
       - name: Scan this repo and its whole history for secrets
         run: |
           skill/scripts/secret-scan.sh --all
           skill/scripts/secret-scan.sh --history
       - name: Shell lint
         if: runner.os == 'Linux'
-        run: shellcheck --severity=warning install.sh skill/hooks/crew-guard.sh skill/scripts/secret-scan.sh tests/*.sh .githooks/pre-commit
+        run: shellcheck --severity=warning install.sh skill/hooks/crew-guard.sh skill/scripts/secret-scan.sh skill/scripts/readiness.sh tests/*.sh .githooks/pre-commit

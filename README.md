@@ -250,7 +250,7 @@ Open Claude Code **inside a project that has a GitHub repo**, then run:
 /crew doctor
 ```
 
-`/crew doctor` checks everything and changes nothing except its own status file (`~/.crew/readiness.md`). It makes one small Codex request to confirm your plan includes the model. It reports each line as OK, WARN, or FAIL, with the fix:
+`/crew doctor` checks everything and changes nothing except its own status file (`~/.crew/readiness.md`). It makes one small Codex request to confirm your plan includes the model. Local checks run through one reviewed script, `scripts/readiness.sh`, which prints the names of API key variables but never their values, and never opens a login file. Each line comes back as OK, WARN, or FAIL, with the fix:
 
 - All the tools and their versions
 - All three logins, and which account pays
@@ -321,7 +321,7 @@ The guard hook only starts once you run `/crew` in a session, so these `deny` ru
 
 ### What is and is not in this repo
 
-This repo holds only the skill's instructions, two small scripts, an installer, and tests. It contains **no tokens, keys, logins, repo profiles, run records, or personal data**, and nothing in it needs any.
+This repo holds only the skill's instructions, three small scripts, an installer, and tests. It contains **no tokens, keys, logins, repo profiles, run records, or personal data**, and nothing in it needs any.
 
 Your private data stays on your computer, outside this repo:
 
@@ -448,8 +448,9 @@ Check those two folders first if you want to keep any notes. This does not sign 
 skill/SKILL.md                 the instructions Claude follows
 skill/hooks/crew-guard.sh      blocks the never run list
 skill/scripts/secret-scan.sh   looks for secrets before a commit
+skill/scripts/readiness.sh     the local half of /crew doctor, printing no secrets
 install.sh                     copies the skill into place
-tests/                         tests for the guard, the scanner, and the installer
+tests/                         tests for the guard, the scripts, and the installer
 .githooks/pre-commit           runs the scanner on every commit
 .github/workflows/checks.yml   runs everything on macOS and Ubuntu
 ```
@@ -460,6 +461,7 @@ Run the tests, which need no accounts and make no network calls:
 bash tests/guard-test.sh
 bash tests/secret-scan-test.sh
 bash tests/install-test.sh
+bash tests/readiness-test.sh
 ```
 
 If you add a rule to the guard, add a line that must be blocked and one similar line that must be allowed.

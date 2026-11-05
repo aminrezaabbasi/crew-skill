@@ -29,6 +29,7 @@ check "dry run installs nothing" test ! -e "$dest"
 check "SKILL.md installed" test -f "$dest/SKILL.md"
 check "guard is executable" test -x "$dest/hooks/crew-guard.sh"
 check "scanner is executable" test -x "$dest/scripts/secret-scan.sh"
+check "readiness script is executable" test -x "$dest/scripts/readiness.sh"
 check "runs folder is private" is_mode "$HOME/.crew/runs" 700
 check "crew home is private" is_mode "$HOME/.crew" 700
 check "repos folder is private" is_mode "$dest/repos" 700
