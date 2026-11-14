@@ -1,5 +1,13 @@
 # crew
 
+> [!IMPORTANT]
+> **You need two paid subscriptions to use crew:**
+>
+> 1. **A Claude subscription** (Pro, Max, Ultra, Team, or Enterprise) for Claude Code.
+> 2. **A ChatGPT subscription** (Plus or higher) for the Codex CLI.
+>
+> Crew runs on **your own** accounts. You sign in to each tool yourself, on your own computer. Nothing in this repo contains or uses anyone else's login, token, or key, and crew never asks for, stores, or sends yours. See [What you need](#what-you-need) for details.
+
 A [Claude Code](https://code.claude.com/docs) skill that makes two AI coding agents work as a team on your own computer, using the subscriptions you already pay for.
 
 - **Claude is the boss.** It plans with you, writes tickets, reviews the work, and opens pull requests. It never edits your application code.
