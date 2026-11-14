@@ -468,7 +468,9 @@ If you add a rule to the guard, add a line that must be blocked and one similar 
 
 ## License
 
-No license has been chosen yet, so by default all rights are reserved. Ask the owner before reusing this in your own work.
+[MIT](LICENSE). You can use, change, and share crew freely, as long as you keep the copyright notice.
+
+Found a security problem? Please report it privately, as [SECURITY.md](SECURITY.md) explains, rather than in a public issue.
 
 ## Tools and technology used
 
